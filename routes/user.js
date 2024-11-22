@@ -2,7 +2,7 @@ import express from "express"
 import { register } from "module";
  import{
     getAllUsers,
-    getUserDetails,
+    getMyProfile,
     login,
     register
 } from "../controllers/user.js"
@@ -14,9 +14,7 @@ router.get("/all",getAllUsers)
 router.post("/new", register);
 router.post("/login", login);
 
-router
-    .route("/userif/:id")
-    .get(getUserDetails)
+router.get("/me",getMyProfile)
 //     .put(updateUser)
 //     .delete(deleteUser);
 
