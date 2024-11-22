@@ -7,6 +7,6 @@ export const sendCookie = (user,res,message,statuscode=200) => {
         maxAge: 15*60*100,//15min
     }).json({
         success: true,
-        message: "Your account has been created succesfully"
+        message,
     });
 }
