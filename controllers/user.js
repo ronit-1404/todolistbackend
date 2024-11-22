@@ -61,28 +61,26 @@ export const specialFunc = (req,res) => {
     });
 };
 
-export const getMyProfile = async (req,res) => {
-    
-    const id ="myid";
+export const getMyProfile = (req,res) => {
 
-    //method 1
-    const {token} = req.cookies;
-    console.log(token);
+    //method 1 below is done as a middleware
+    // const {token} = req.cookies;
+    // console.log(token);
 
-    if(!token)
-        return res.status(404).json({
-            success: false,
-            message: "Login first",
-    })
+    // if(!token)
+    //     return res.status(404).json({
+    //         success: false,
+    //         message: "Login first",
+    // })
 
-    const decoded = jwt.verify(token,process.env.JWT_SECRET);
+    // const decoded = jwt.verify(token,process.env.JWT_SECRET);
 
 
     //we need id to getprofile and we can get id through token which we go during login
-    const user = await User.findById(decoded._id);
+    // const user = await User.findById(decoded._id);
     res.status(200).json({
         success: true,
-        user,
+        user: req.user,
     })
 };
 
