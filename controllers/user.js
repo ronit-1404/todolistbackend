@@ -1,6 +1,5 @@
 import { User } from "../models/user";
 import bcrypt from "bcrypt"
-import jwt from "jsonwebtoken";
 import { sendCookie } from "../utils/features";
 export const getAllUsers = async (req,res) => {
     const users = await User.find({});
@@ -83,6 +82,15 @@ export const getMyProfile = (req,res) => {
         user: req.user,
     })
 };
+
+
+export const logout = (req,res) => {
+    res.status(200).cookie("token","",{expires: new Date(Date.now())}).json({
+        success: true,
+        user: req.user
+    })
+}
+
 
 export const updateUser = async (req,res) =>{
     const { id } = req.params;
