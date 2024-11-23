@@ -1,10 +1,11 @@
 import express from "express"
-import { newtask } from "../controllers/task";
+import { getMyTask, newtask } from "../controllers/task";
+import { isAuthenticated } from "../middlewares/auth";
 
 const router = express.Router();
 
-router.post("/new", newtask);
+router.post("/new",isAuthenticated, newtask);
 
-
+router.get("/my", isAuthenticated, getMyTask)
 
 export default router;
