@@ -8,12 +8,22 @@ config({
     path: "./data/config.env",
 });
 
+app.use(express.json())
+app.use(cookieParser());
+app.use(
+    cors({
+        origin: [process.env.FRONTEND_URL],
+        methods: ["GET", "POST", "PUT", "DELETE"],
+        credential: true,
+    })
+);
+
+
 app.use("/api/v1/user", UserRouter);
 app.use("/api/v1/task", taskrouter);
-app.use(cookieParser());
+
 
 //using routes
-app.use(express.json())
 
 app.get("/", (req,res) => {
     res.send("Working perfectly");
