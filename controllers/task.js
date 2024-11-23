@@ -51,7 +51,13 @@ export const DeleteTask = async (req,res,next) => {
 
     const task = await Task.findById(id);
 
-    await task.remove();
+    if(!task)
+        return res.status(404).json({
+        success: false,
+        message: "Invalid Id",
+    });
+
+    await task.deleteOne();
 
     res.status(200).json({
         success: true,
